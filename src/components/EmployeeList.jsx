@@ -12,7 +12,9 @@ export default function NewEmp() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/employees");
+        const response = await fetch(
+          "https://employee-backend-ten.vercel.app/employees"
+        );
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
@@ -42,9 +44,12 @@ export default function NewEmp() {
 
   const handleDeleteSingle = async (employeeId) => {
     try {
-      await fetch(`http://localhost:3000/employees/${employeeId}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://employee-backend-ten.vercel.app/employees/${employeeId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       setEmployees((prevEmployees) =>
         prevEmployees.filter((employee) => employee.employee_id !== employeeId)
@@ -62,9 +67,12 @@ export default function NewEmp() {
     try {
       await Promise.all(
         selectedEmployees.map(async (employeeId) => {
-          await fetch(`http://localhost:3000/employees/${employeeId}`, {
-            method: "DELETE",
-          });
+          await fetch(
+            `https://employee-backend-ten.vercel.app/employees/${employeeId}`,
+            {
+              method: "DELETE",
+            }
+          );
         })
       );
 

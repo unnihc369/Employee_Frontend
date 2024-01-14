@@ -13,7 +13,9 @@ const Employee = () => {
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/employees/${id}`);
+        const response = await fetch(
+          `https://employee-backend-ten.vercel.app/employees/${id}`
+        );
         const data = await response.json();
         setEmployeeData(data);
       } catch (error) {
