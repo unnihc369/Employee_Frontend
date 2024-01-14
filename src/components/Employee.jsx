@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import profileImage from "../../public/profile.png";
-import "./Employee.css"; // Import your existing CSS file or styles
-import { ArrowUpRight } from "lucide-react"; // If not imported already
+import "./Employee.css"; 
+import { ArrowUpRight } from "lucide-react"
 
 const Employee = () => {
   const { id } = useParams();
@@ -27,12 +27,10 @@ const Employee = () => {
   }, [id]);
 
   const handleEdit = () => {
-    // Handle edit functionality
     console.log("Edit button clicked");
   };
 
   const handleDelete = () => {
-    // Handle delete functionality
     console.log("Delete button clicked");
   };
 
