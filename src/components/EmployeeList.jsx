@@ -1,7 +1,7 @@
 import profile from "../../public/";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight,Pencil,Trash } from "lucide-react";
 
 export default function NewEmp() {
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ export default function NewEmp() {
   };
 
   return (
-    <div className="mt-6 flex flex-col items-center">
+    <div className="mt-6 flex flex-col items-center mx-4">
       <div className="mb-4 w-full max-w-md">
         <label htmlFor="search" className="sr-only">
           Search
@@ -109,8 +109,9 @@ export default function NewEmp() {
         <button
           type="button"
           onClick={handleDeleteSelected}
-          className="mb-4 w-[150px] rounded bg-red-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+          className="mb-4 w-[150px] rounded shadow-md bg-red-500 px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 flex items-center gap-2"
         >
+          <Trash />
           Delete Selected
         </button>
       )}
@@ -118,9 +119,9 @@ export default function NewEmp() {
         {filteredEmployees.map((employee) => (
           <div
             key={employee.employee_id}
-            className={`w-full max-w-[300px] mx-auto mb-4 rounded-md border ${
+            className={`w-full max-w-[300px] mx-auto mb-4 rounded-md shadow-lg border ${
               selectedEmployees.includes(employee.employee_id)
-                ? "border-blue-500"
+                ? "bg-blue-200 border-blue-500"
                 : ""
             }`}
           >
@@ -133,7 +134,10 @@ export default function NewEmp() {
             </div>
             <div className="p-4">
               <h1 className="inline-flex items-center text-lg font-semibold">
-                <Link to={`/employee/${employee.employee_id}`}>
+                <Link
+                  to={`/employee/${employee.employee_id}`}
+                  className="flex items-center gap-1"
+                >
                   {employee.employee_name} <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </h1>
@@ -156,16 +160,19 @@ export default function NewEmp() {
               <button
                 type="button"
                 onClick={() => handleEditSingle(employee.employee_id)}
-                className="mt-2 w-full rounded bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+                className="mt-2 w-full rounded bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 flex items-center justify-center gap-3"
               >
-                Edit
+                <Pencil />
+                <span>Edit</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleDeleteSingle(employee.employee_id)}
-                className="mt-2 w-full rounded bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+                disabled={selectedEmployees.includes(employee.employee_id)}
+                className={`mt-2 w-full rounded bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 flex items-center justify-center gap-2`}
               >
-                Delete
+                <Trash />
+                <span>Delete</span>
               </button>
             </div>
           </div>
