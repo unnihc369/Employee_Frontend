@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import profileImage from "../../public/profile.png"; // Replace with your actual profile image URL
+import profileImage from "../../public/profile.png";
+import "./Employee.css"; // Import your existing CSS file or styles
+import { ArrowUpRight } from "lucide-react"; // If not imported already
 
 const Employee = () => {
-  const { id } = useParams(); // Get the employee ID from the URL
+  const { id } = useParams();
   const [employeeData, setEmployeeData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,49 +38,46 @@ const Employee = () => {
 
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="max-w-lg w-full bg-white p-8 rounded-md shadow-md">
+      <div className="employee-container bg-white p-6 rounded-md shadow-md">
         {isLoading && (
-          <p className="text-center">Loading employee details...</p>
+          <p className="loading-message">Loading employee details...</p>
         )}
         {error && (
-          <p className="text-center text-red-500">
-            Error fetching data: {error.message}
-          </p>
+          <p className="error-message">Error fetching data: {error.message}</p>
         )}
         {employeeData && (
           <>
             <div className="flex items-center justify-center mb-4">
               <img
-                className="h-32 w-32 rounded-full object-cover"
+                className="profile-image h-20 w-20 rounded-full mb-2 object-cover"
                 src={profileImage}
                 alt="Profile"
               />
             </div>
-            <h2 className="text-2xl font-bold mb-4">
-              {employeeData.employee_name}
+            <h2 className="employee-name text-xl font-semibold mb-2">
+              {employeeData.employee_name}{" "}
+              <ArrowUpRight className="h-5 w-5 inline" />
             </h2>
-            <p className="text-gray-600 mb-2">ID: {employeeData.id}</p>
-            <p className="text-gray-600 mb-4">
-              Age: {employeeData.employee_age}
-            </p>
-            <p className="text-gray-600 mb-4">
+            <p className="employee-info">ID: {employeeData.id}</p>
+            <p className="employee-info">Age: {employeeData.employee_age}</p>
+            <p className="employee-info">
               Salary: ${employeeData.employee_salary}
             </p>
-            <p className="text-gray-600 mb-4">Role: Full Stack Developer</p>
-            <p className="text-gray-600 mb-4">Address: Bangalore</p>
+            <p className="employee-info">Role: Full Stack Developer</p>
+            <p className="employee-info">Address: Bangalore</p>
 
-            <div className="flex justify-between">
+            <div className="button-container mt-4 space-x-2">
               <button
                 type="button"
                 onClick={handleEdit}
-                className="w-1/2 bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-700"
+                className="edit-button bg-black text-white py-2 px-4 rounded  focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
               >
                 Edit
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
-                className="w-1/2 bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:border-red-700"
+                className="delete-button bg-black text-white py-2 px-4 rounded  focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
               >
                 Delete
               </button>

@@ -1,0 +1,69 @@
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.employee-container {
+    max-width: 32rem;
+    width: 100%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-message {
+    text-align: center;
+}
+
+.error-message {
+    text-align: center;
+    color: red;
+}
+
+.profile-image {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.employee-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.employee-info {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-button,
+.delete-button {
+    width: 48%;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #555;
+    }
+}
+
+.edit-button {
+    background-color: #007bff;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
