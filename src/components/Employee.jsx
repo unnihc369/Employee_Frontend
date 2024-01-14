@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import profileImage from "../../public/profile.png";
-import "./Employee.css"; 
-import { ArrowUpRight } from "lucide-react"
+import { Pencil, Trash } from "lucide-react";
+import "./Employee.css";
 
 const Employee = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [employeeData, setEmployeeData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,13 +38,15 @@ const Employee = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="employee-container bg-white p-6 rounded-md shadow-md">
+    <div className="flex flex-col items-center justify-center h-full w-full p-4 mt-8">
+      <div className="employee-container m-2 bg-white p-6 rounded-md shadow-2xl">
         {isLoading && (
-          <p className="loading-message">Loading employee details...</p>
+          <p className="loading-message m-4">Loading employee details...</p>
         )}
         {error && (
-          <p className="error-message">Error fetching data: {error.message}</p>
+          <p className="error-message m4">
+            Error fetching data: {error.message}
+          </p>
         )}
         {employeeData && (
           <>
@@ -56,9 +59,7 @@ const Employee = () => {
             </div>
             <h2 className="employee-name text-xl font-semibold mb-2">
               {employeeData.employee_name}{" "}
-              <ArrowUpRight className="h-5 w-5 inline" />
             </h2>
-            <p className="employee-info">ID: {employeeData.id}</p>
             <p className="employee-info">Age: {employeeData.employee_age}</p>
             <p className="employee-info">
               Salary: ${employeeData.employee_salary}
@@ -70,16 +71,28 @@ const Employee = () => {
               <button
                 type="button"
                 onClick={handleEdit}
-                className="edit-button bg-black text-white py-2 px-4 rounded  focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+                className="edit-button bg-black text-white py-2 px-4 rounded focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 flex items-center justify-center gap-4"
               >
+                <Pencil />
                 Edit
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
-                className="delete-button bg-black text-white py-2 px-4 rounded  focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+                className="delete-button bg-black text-white py-2 px-4 rounded focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50 flex items-center justify-center gap-4"
               >
+                <Trash/>
                 Delete
+              </button>
+            </div>
+
+            <div className="navigation-buttons mt-4 space-x-2 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="bg-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-50"
+              >
+                Back to Home
               </button>
             </div>
           </>

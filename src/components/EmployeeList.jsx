@@ -54,6 +54,8 @@ export default function NewEmp() {
       setEmployees((prevEmployees) =>
         prevEmployees.filter((employee) => employee.employee_id !== employeeId)
       );
+
+      navigate('/');
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
